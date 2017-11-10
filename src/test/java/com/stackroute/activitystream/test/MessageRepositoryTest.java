@@ -45,6 +45,7 @@ public class MessageRepositoryTest {
 		message.setPostedDate();
 		
 		messageRepository.sendMessage(message);
+		// commenting
 		
 		List<Message> messages=messageRepository.getAllMessages();
 		boolean found=false;

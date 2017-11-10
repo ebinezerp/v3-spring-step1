@@ -17,9 +17,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @EnableWebMvc - Adding this annotation to an @Configuration class imports the Spring MVC 
  * 				   configuration from WebMvcConfigurationSupport 
  * @EnableTransactionManagement - Enables Spring's annotation-driven transaction management capability.
- *                  
+ *   some line area addiing for testing of gitlab               
  * 
  * */
+
 
 @Configuration
 @ComponentScan("com.stackroute.activitystream")
