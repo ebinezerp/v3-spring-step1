@@ -1,5 +1,12 @@
 package com.stackroute.activitystream.model;
 
+import java.util.Date;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
 /*
  * The class "Message" will be acting as the data model for the message Table in the database. Please
  * note that this class is annotated with @Entity annotation. Hibernate will scan all package for 
@@ -19,30 +26,44 @@ public class Message {
 	 * system date
 	 */
 
-	public void setSenderName(String string) {
-		// TODO Auto-generated method stub
-		
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer messageId;
+	@NotBlank(message="should not be empty")
+	private String senderName;
+	@NotBlank(message="should not be empty")
+	private String message;
+	private Date postedDate;
+	public Integer getMessageId() {
+		return messageId;
 	}
-
-	public void setMessage(String string) {
-		// TODO Auto-generated method stub
-		
+	public void setMessageId(Integer messageId) {
+		this.messageId = messageId;
 	}
-
-	public void setPostedDate() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public String getSenderName() {
-		// TODO Auto-generated method stub
-		return null;
+		return senderName;
 	}
-
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
 	public String getMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public Date getPostedDate() {
+		return postedDate;
+	}
+	public void setPostedDate() {
+		this.postedDate = new Date();
 	}
 	
-
+	
+	@Override
+	public String toString()
+	{
+		return senderName+"  "+message+" "+postedDate;
+	}
+	
 }

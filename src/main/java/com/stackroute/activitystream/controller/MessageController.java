@@ -1,8 +1,22 @@
 package com.stackroute.activitystream.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.stackroute.activitystream.config.HibernateUtil;
+import com.stackroute.activitystream.model.Message;
+import com.stackroute.activitystream.repository.MessageRepository;
+
 /*Annotate the class with @Controller annotation.@Controller annotation is used to mark 
  * any POJO class as a controller so that Spring can recognize this class as a Controller*/
-
+@Controller
 public class MessageController {
 
 	/*
@@ -31,6 +45,39 @@ public class MessageController {
 	 * should be sent back to the view using ModelMap.
 	 * This handler method should map to the URL "/sendMessage". 
 	*/
+	@Autowired
+	MessageRepository messageRepository;
 	
+	@GetMapping("/")
+	public String displayAllMessages(ModelMap model)
+	{
+			
+		model.addAttribute("message", new Message());
+		model.addAttribute("allMessages", messageRepository.getAllMessages());
+		
+		
+		return "index";
+	}
+	
+	
+	
+	
+	
+	
+	@PostMapping("/insertMessage")
+	public String insertMessage(@Valid @ModelAttribute("message") Message message,BindingResult bindingResult,ModelMap model)
+	{
+		if(bindingResult.hasErrors())
+		{
+		  model.addAttribute("allMessages", messageRepository.getAllMessages());
+		  return "index";	
+		}
+		message.setPostedDate();
+		messageRepository.sendMessage(message);
+		
+		return "redirect:/";
+	}
+	
+
 
 }

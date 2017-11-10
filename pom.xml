@@ -9,14 +9,20 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
-		<!-- dependency for JUNIT 4 -->
+		<!-- dependency for JUNIT 4 to be added -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- Dependency for hibernate entity manager -->
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.2.Final</version>
+		</dependency>
+		<!-- Dependency for hibernate entity manager to be added -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -28,22 +34,33 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.3.10.RELEASE</version>
 		</dependency>
-
 		<!-- Dependency for Spring ORM to be added -->
-
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.3.10.RELEASE</version>
+		</dependency>
 		<!-- Dependency for apache commons dbcp to be added -->
-
-
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+		</dependency>
 		<!-- Dependency of MySQL connector for Java to be added -->
-
-
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.6</version>
+		</dependency>
 		<!-- Dependency for JSTL -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
 		<!-- Dependency for Servlet API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

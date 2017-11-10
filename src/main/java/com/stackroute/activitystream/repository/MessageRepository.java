@@ -2,6 +2,11 @@ package com.stackroute.activitystream.repository;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.stackroute.activitystream.config.HibernateUtil;
 import com.stackroute.activitystream.model.Message;
 
 /*
@@ -11,19 +16,32 @@ import com.stackroute.activitystream.model.Message;
  * */
 public class MessageRepository {
 	
+	SessionFactory sessionFactory;
+	
 	public MessageRepository() {
 		/*
 		 * create a hibernate session from HibernateUtil
 		 */
+		sessionFactory=HibernateUtil.getSessionFactory();
 		
 	}
 	
 	/*
 	 * This method is used to save messages in database
 	 */ 
+	
 	public boolean sendMessage(Message message) {
 		
+		try {
+		 Session session=sessionFactory.openSession();
+		 Transaction tx=session.beginTransaction();
+		 session.save(message);
+		 tx.commit();
+			return true;
+		}catch(Exception e)
+		{
 		return false;
+		}
 
 		
 	}
@@ -33,6 +51,20 @@ public class MessageRepository {
 	 */
 	public List<Message> getAllMessages(){
 		
-		return null;
+		try {
+			 
+				Session session= sessionFactory.openSession();
+				
+				Transaction transaction=  session.beginTransaction();
+				List<Message> allMessages=session.createQuery("from Message", Message.class).getResultList();
+				transaction.commit();
+				
+			 return allMessages;
+			}catch (Exception e) {
+				// TODO: handle exception
+				
+				System.out.println(e);
+				return null;
+			}
 	}
 }
